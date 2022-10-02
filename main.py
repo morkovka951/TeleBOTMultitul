@@ -13,7 +13,7 @@ def print_hi(name):
     print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
 
 def bot():
-    bot = telebot.TeleBot("5668937542:AAEqtqeDEzzdcXJECu00wk3zYMGv_NSSx-M")
+    bot = telebot.TeleBot("***************************")
 
     @bot.message_handler(commands=['start', 'help'])
     def send_welcome(message):
