@@ -2,8 +2,10 @@
 # import telebot
 #
 import botFunction
+import loger
 import readWriteExcel
-
+import logging
+import checkVisa
 
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
@@ -17,7 +19,10 @@ def print_hi(name):
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
+    loger
     print_hi('PyCharm')
-    botFunction.bot()
+    #botFunction.bot()
     #readWriteExcel.write2Excel()
+    #checkVisa.main('OAM-70324-4/ZM-2022')
+    checkVisa.main('OAM-42474-3/DP-2022')
 
