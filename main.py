@@ -1,11 +1,13 @@
 # This is a sample Python script.
 # import telebot
+import requests
 #
 import botFunction
 import loger
 import readWriteExcel
 import logging
 import checkVisa
+
 
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
@@ -23,6 +25,8 @@ if __name__ == '__main__':
     print_hi('PyCharm')
     #botFunction.bot()
     #readWriteExcel.write2Excel()
-    #checkVisa.main('OAM-70324-4/ZM-2022')
-    checkVisa.main('OAM-42474-3/DP-2022')
+    checkVisa.main('OAM-70324-4/ZM-2022')
+    #checkVisa.main('OAM-42474-3/DP-2022')
+
+
 

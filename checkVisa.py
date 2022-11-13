@@ -1,9 +1,11 @@
 import logging
 import time
+import requests
 
 
 import pyautogui
 
+cisloJednaniGlob = ''
 part1CJ = ''
 part2CJ = ''
 part3CJ = ''
@@ -12,9 +14,11 @@ part5CJ = ''
 
 
 def main(cisloJednani):
+    global cisloJednaniGlob
+    cisloJednaniGlob = cisloJednani
     parsCisloJednani(cisloJednani)
-    starChrome()
-
+    #starChrome()
+    createPost(part2CJ, part3CJ, part4CJ, part5CJ)
 
 
 def parsCisloJednani(cisloJednani):
@@ -38,11 +42,41 @@ def parsCisloJednani(cisloJednani):
     part5CJ = cisloJednani[part4CJNum + 1:]
     logging.info('part5 => ' + part5CJ)
 
+
+def createPost(part2CJ, part3CJ, part4CJ, part5CJ):
+
+    r = requests.post('https://frs.gov.cz/cs/ioff/application-status', data={
+        'ioff_application_number' : part2CJ,
+        'ioff_application_number_fake' : part3CJ,
+        'ioff_application_code' : part4CJ,
+        'ioff_application_year' : part5CJ,
+        'ioff_zov' : '',
+        'op':'Ověřit',
+        'form_build_id' : 'form-N0TjT6B18wsFb8-qmGSQ6MadxRfW3a_ANpI_mC759XQ',
+        'form_id': 'ioff_application_status_form',
+        'honeypot_time': '1667419953|2LDoFhP3t4QEFs7r0BHuQ0I71Ynb57diBf2N1APpsvk',
+        'surname': ''})
+    #print(r.text)
+
+
+    # r = requests.post('https://pythonworld.ru/tipy-dannyx-v-python/fajly-rabota-s-fajlami.html')
+    #
+    # print(r.text)
+    # request2file = open('statusVisa2.txt', 'w')
+    # request2file.write(r.text)
+    logging.info('request is writed to file')
+    statusNum = r.text.find('ve stavu <span class="alert alert-warning"><strong>')
+    print(statusNum)
+    status = r.text[statusNum + 51: statusNum + 64]
+    print( cisloJednaniGlob + ' - status = ', status)
+    #statusNum = r.text.find('<span class="alert alert-warning"><strong>')
+
 def starChrome():
     pyautogui.keyDown("win")
     pyautogui.press("r")
     pyautogui.keyUp("win")
-    pyautogui.write("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe https://frs.gov.cz/cs/ioff/application-status")
+    #pyautogui.write("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe https://frs.gov.cz/cs/ioff/application-status")
+    pyautogui.write("chrome https://frs.gov.cz/cs/ioff/application-status")
     time.sleep(0.2)
     pyautogui.press("enter")
 
