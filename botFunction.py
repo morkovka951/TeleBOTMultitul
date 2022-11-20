@@ -1,5 +1,10 @@
+import time
+
 import telebot
+import random
+import checkVisa
 import telegramConnection
+import botFunction
 
 from telebot import types
 
@@ -18,9 +23,26 @@ def bot():
 
         bot.send_message(message.chat.id, "Howdy, how are you doing?" , reply_markup=markup)
 
+    @bot.message_handler(commands=['visa'])
+    def send_welcome(message):
+        #useID = message
+
+        checkVisa.main('OAM-70324-4/ZM-2022')
+        print(checkVisa.statusViza)
+        bot.send_message(message.chat.id, checkVisa.statusViza)
+        time.sleep(random.randint(50, 150))
+        checkVisa.main('OAM-42474-3/DP-2022')
+        print(checkVisa.statusViza)
+        bot.send_message(message.chat.id, checkVisa.statusViza)
+        # checkVisa.main('OAM-42474-3/DP-2022')
+        # print(checkVisa.statusViza)
+        # bot.send_message(message.chat.id, checkVisa.statusViza)
+
+
+
     @bot.message_handler(content_types=['text'])
     def getUserText(message):
-        bot.send_message(message.chat.id, message)
+        bot.send_message(message.chat.id, message.text)
 
 
     #@bot.message_handler(func=lambda message: True)

@@ -27,12 +27,12 @@ if __name__ == '__main__':
     loger
     print_hi('PyCharm')
 
-    #botFunction.bot()
+    botFunction.bot()
     #readWriteExcel.write2Excel()
 
-    checkVisa.main('OAM-70324-4/ZM-2022')
-    time.sleep(random.randint(50, 150))
-    checkVisa.main('OAM-42474-3/DP-2022')
+    #checkVisa.main('OAM-70324-4/ZM-2022')
+    #time.sleep(random.randint(50, 150))
+    #checkVisa.main('OAM-42474-3/DP-2022')
 
 
 

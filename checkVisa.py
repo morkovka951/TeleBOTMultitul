@@ -5,6 +5,7 @@ import requests
 
 import pyautogui
 
+statusViza = ''
 cisloJednaniGlob = ''
 part1CJ = ''
 part2CJ = ''
@@ -44,7 +45,7 @@ def parsCisloJednani(cisloJednani):
 
 
 def createPost(part2CJ, part3CJ, part4CJ, part5CJ):
-
+    global statusViza
     r = requests.post('https://frs.gov.cz/cs/ioff/application-status', data={
         'ioff_application_number' : part2CJ,
         'ioff_application_number_fake' : part3CJ,
@@ -70,6 +71,8 @@ def createPost(part2CJ, part3CJ, part4CJ, part5CJ):
     status = r.text[statusNum + 51: statusNum + 64]
     print( cisloJednaniGlob + ' - status = ', status)
     #statusNum = r.text.find('<span class="alert alert-warning"><strong>')
+    statusViza = cisloJednaniGlob + ' - status = ' + status
+    #return (cisloJednaniGlob + ' - status = ', status)
 
 def starChrome():
     pyautogui.keyDown("win")
