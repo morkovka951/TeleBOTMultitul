@@ -3,7 +3,7 @@ import time
 import requests
 
 
-import pyautogui
+#import pyautogui
 
 statusViza = ''
 cisloJednaniGlob = ''
