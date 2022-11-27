@@ -27,13 +27,15 @@ def bot():
     def send_welcome(message):
         #useID = message
 
-        checkVisa.main('OAM-70324-4/ZM-2022')
-        print(checkVisa.statusViza)
-        bot.send_message(message.chat.id, checkVisa.statusViza)
-        time.sleep(random.randint(50, 150))
+        #checkVisa.main('OAM-70324-4/ZM-2022')
+        #print(checkVisa.statusViza)
+        #bot.send_message(message.chat.id, checkVisa.statusViza)
+        #time.sleep(3)
+        #time.sleep(random.randint(5, 50))
         checkVisa.main('OAM-42474-3/DP-2022')
         print(checkVisa.statusViza)
         bot.send_message(message.chat.id, checkVisa.statusViza)
+
         # checkVisa.main('OAM-42474-3/DP-2022')
         # print(checkVisa.statusViza)
         # bot.send_message(message.chat.id, checkVisa.statusViza)
@@ -42,8 +44,12 @@ def bot():
 
     @bot.message_handler(content_types=['text'])
     def getUserText(message):
+        print(message.from_user.id)
+        idUser = message.from_user.id
+        idUser1 = 1999291160    # Alla
         bot.send_message(message.chat.id, message.text)
-
+        #bot.send_message(idUser, message.text)
+        #bot.send_message(idUser1, message.text)
 
     #@bot.message_handler(func=lambda message: True)
     #def echo_all(message):

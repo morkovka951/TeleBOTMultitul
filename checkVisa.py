@@ -62,13 +62,19 @@ def createPost(part2CJ, part3CJ, part4CJ, part5CJ):
 
     # r = requests.post('https://pythonworld.ru/tipy-dannyx-v-python/fajly-rabota-s-fajlami.html')
     #
-    # print(r.text)
+    print(r.text)
     # request2file = open('statusVisa2.txt', 'w')
     # request2file.write(r.text)
     logging.info('request is writed to file')
-    statusNum = r.text.find('ve stavu <span class="alert alert-warning"><strong>')
+    NumVisa = part1CJ + "-" + part2CJ + "/" + part4CJ + "-" + part5CJ
+    print(NumVisa)
+    statusNum = r.text.find(NumVisa)
     print(statusNum)
-    status = r.text[statusNum + 51: statusNum + 64]
+    statusPart1 = r.text[statusNum + 101: statusNum + 102]  # get first latter status
+    if statusPart1 == "Z":
+        status = r.text[statusNum + 101: statusNum + 114]   # Zpracovává se
+    elif statusPart1 == "V":
+        status = r.text[statusNum + 101: statusNum + 120]   # Vyřízeno – POVOLENO
     print( cisloJednaniGlob + ' - status = ', status)
     #statusNum = r.text.find('<span class="alert alert-warning"><strong>')
     statusViza = cisloJednaniGlob + ' - status = ' + status
