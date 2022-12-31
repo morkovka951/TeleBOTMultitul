@@ -6,6 +6,7 @@ import time
 import requests
 #
 import botFunction
+import dbPostgres
 import loger
 import readWriteExcel
 import logging
@@ -28,7 +29,16 @@ if __name__ == '__main__':
     print_hi('PyCharm')
 
     botFunction.bot()
+
+    #dbPostgres.connection2PostgresSelect('insert into public.carfuel VALUES (\'text55\', \'text55\', \'comments55\');')
+
+
+
+
+
     #readWriteExcel.write2Excel()
+
+
 
     #checkVisa.main('OAM-70324-4/ZM-2022')
     #time.sleep(random.randint(50, 150))

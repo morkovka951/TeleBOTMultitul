@@ -18,7 +18,8 @@ def bot():
         # button for user
         markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
         item1 = types.KeyboardButton("Button1")
-        item2 = types.KeyboardButton("Button2")
+        item2 = types.KeyboardButton("Button22")
+
         markup.add(item1,item2)
 
         bot.send_message(message.chat.id, "Howdy, how are you doing?" , reply_markup=markup)
@@ -44,10 +45,19 @@ def bot():
 
     @bot.message_handler(content_types=['text'])
     def getUserText(message):
-        print(message.from_user.id)
-        idUser = message.from_user.id
-        idUser1 = 1999291160    # Alla
-        bot.send_message(message.chat.id, message.text)
+
+        if message.text == 'Auto':
+            activity = input('What do you do? - ')
+            price = input('Price of activity - ')
+            print(activity + price)
+        else:
+            print(message.from_user.id)
+            idUser = message.from_user.id
+            idUser1 = 1999291160    # Alla
+            bot.send_message(message.chat.id, message.text)
+
+
+
         #bot.send_message(idUser, message.text)
         #bot.send_message(idUser1, message.text)
 

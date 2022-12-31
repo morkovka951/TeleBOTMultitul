@@ -62,76 +62,83 @@ def createPost(part2CJ, part3CJ, part4CJ, part5CJ):
 
     # r = requests.post('https://pythonworld.ru/tipy-dannyx-v-python/fajly-rabota-s-fajlami.html')
     #
-    print(r.text)
+    #print(r.text)
     # request2file = open('statusVisa2.txt', 'w')
     # request2file.write(r.text)
     logging.info('request is writed to file')
     NumVisa = part1CJ + "-" + part2CJ + "/" + part4CJ + "-" + part5CJ
-    print(NumVisa)
+    print('NumVisa - ' + NumVisa)
     statusNum = r.text.find(NumVisa)
-    print(statusNum)
+    print('statusNum - ' + str(statusNum))
     statusPart1 = r.text[statusNum + 101: statusNum + 102]  # get first latter status
+    print('statusPart1 - ' + statusPart1)
     if statusPart1 == "Z":
         status = r.text[statusNum + 101: statusNum + 114]   # Zpracovává se
+        print('Zpracovává se')
     elif statusPart1 == "V":
-        status = r.text[statusNum + 101: statusNum + 120]   # Vyřízeno – POVOLENO
-    print( cisloJednaniGlob + ' - status = ', status)
+        status = r.text[statusNum + 100: statusNum + 119]   # Vyřízeno – POVOLENO
+        print('Vyřízeno – POVOLENO')
+    else:
+        print('else')
+        print(r.text[statusNum + 100: statusNum + 119])
+    #print( cisloJednaniGlob + ' - status = ', status)
     #statusNum = r.text.find('<span class="alert alert-warning"><strong>')
     statusViza = cisloJednaniGlob + ' - status = ' + status
+    logging.info('statusViza - '+ statusViza)
     #return (cisloJednaniGlob + ' - status = ', status)
 
-def starChrome():
-    pyautogui.keyDown("win")
-    pyautogui.press("r")
-    pyautogui.keyUp("win")
-    #pyautogui.write("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe https://frs.gov.cz/cs/ioff/application-status")
-    pyautogui.write("chrome https://frs.gov.cz/cs/ioff/application-status")
-    time.sleep(0.2)
-    pyautogui.press("enter")
-
-
-    pyautogui.moveTo(957, 503, duration=0.25)
-    time.sleep(0.5)
-    pyautogui.leftClick()
-    pyautogui.write(part2CJ)
-
-    pyautogui.moveTo(1050, 503, duration=0.25)
-    pyautogui.leftClick()
-    pyautogui.write(part3CJ)
-
-    pyautogui.moveTo(1150, 503, duration=0.25)
-    pyautogui.leftClick()
-    if part4CJ == "ZM":
-        pyautogui.press("z")
-        time.sleep(0.2)
-        pyautogui.press("z")
-        pyautogui.press("enter")
-    elif part4CJ == "DP":
-        pyautogui.press("d")
-        pyautogui.press("enter")
-    elif part4CJ == "DP":
-        pyautogui.press("d")
-        time.sleep(0.2)
-        pyautogui.press("d")
-        pyautogui.press("enter")
-
-    pyautogui.moveTo(1300, 503, duration=0.25)
-    pyautogui.leftClick()
-
-    if part5CJ == "2022":
-        pyautogui.press("2")
-        pyautogui.press("enter")
-    elif part5CJ == "2021":
-        pyautogui.press("2")
-        time.sleep(0.2)
-        pyautogui.press("2")
-        pyautogui.press("enter")
-
-    pyautogui.moveTo(850, 753, duration=0.25)
-    pyautogui.leftClick()
-
-    pyautogui.moveTo(790, 434, duration=0.25)
-    pyautogui.dragTo(1500, 439, 1, button='left')
+# def starChrome():
+#     pyautogui.keyDown("win")
+#     pyautogui.press("r")
+#     pyautogui.keyUp("win")
+#     #pyautogui.write("C:\Program Files (x86)\Google\Chrome\Application\chrome.exe https://frs.gov.cz/cs/ioff/application-status")
+#     pyautogui.write("chrome https://frs.gov.cz/cs/ioff/application-status")
+#     time.sleep(0.2)
+#     pyautogui.press("enter")
+#
+#
+#     pyautogui.moveTo(957, 503, duration=0.25)
+#     time.sleep(0.5)
+#     pyautogui.leftClick()
+#     pyautogui.write(part2CJ)
+#
+#     pyautogui.moveTo(1050, 503, duration=0.25)
+#     pyautogui.leftClick()
+#     pyautogui.write(part3CJ)
+#
+#     pyautogui.moveTo(1150, 503, duration=0.25)
+#     pyautogui.leftClick()
+#     if part4CJ == "ZM":
+#         pyautogui.press("z")
+#         time.sleep(0.2)
+#         pyautogui.press("z")
+#         pyautogui.press("enter")
+#     elif part4CJ == "DP":
+#         pyautogui.press("d")
+#         pyautogui.press("enter")
+#     elif part4CJ == "DP":
+#         pyautogui.press("d")
+#         time.sleep(0.2)
+#         pyautogui.press("d")
+#         pyautogui.press("enter")
+#
+#     pyautogui.moveTo(1300, 503, duration=0.25)
+#     pyautogui.leftClick()
+#
+#     if part5CJ == "2022":
+#         pyautogui.press("2")
+#         pyautogui.press("enter")
+#     elif part5CJ == "2021":
+#         pyautogui.press("2")
+#         time.sleep(0.2)
+#         pyautogui.press("2")
+#         pyautogui.press("enter")
+#
+#     pyautogui.moveTo(850, 753, duration=0.25)
+#     pyautogui.leftClick()
+#
+#     pyautogui.moveTo(790, 434, duration=0.25)
+#     pyautogui.dragTo(1500, 439, 1, button='left')
     #pyautogui.leftClick
 
 #Point(x=782, y=433)
