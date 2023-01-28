@@ -20,6 +20,7 @@ def main(cisloJednani):
     parsCisloJednani(cisloJednani)
     #starChrome()
     createPost(part2CJ, part3CJ, part4CJ, part5CJ)
+    print('END')
 
 
 def parsCisloJednani(cisloJednani):
@@ -70,7 +71,7 @@ def createPost(part2CJ, part3CJ, part4CJ, part5CJ):
     print('NumVisa - ' + NumVisa)
     statusNum = r.text.find(NumVisa)
     print('statusNum - ' + str(statusNum))
-    statusPart1 = r.text[statusNum + 101: statusNum + 102]  # get first latter status
+    statusPart1 = r.text[statusNum + 100: statusNum + 101]  # get first latter status
     print('statusPart1 - ' + statusPart1)
     if statusPart1 == "Z":
         status = r.text[statusNum + 101: statusNum + 114]   # Zpracovává se
