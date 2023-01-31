@@ -33,7 +33,12 @@ def parsCisloJednani(cisloJednani):
     part1CJ = cisloJednani[:part1CJNum]
     logging.info('part1 => ' + part1CJ)
     part2CJNum = cisloJednani.find('-', part1CJNum + 1)
-    part2CJ = cisloJednani[part1CJNum + 1: part2CJNum]
+    if cisloJednani[part1CJNum + 1: part1CJNum + 2] == '0':
+        part2CJ = cisloJednani[part1CJNum + 2: part2CJNum]
+        print('part2CJ - ' + str(part2CJ))
+    else:
+        part2CJ = cisloJednani[part1CJNum + 1: part2CJNum]
+        print('part2CJ - ' + str(part2CJ))
     logging.info('part2 => ' + part2CJ)
     part3CJNum = cisloJednani.find('/', part2CJNum + 1)
     part3CJ = cisloJednani[part2CJNum + 1: part3CJNum]
@@ -54,9 +59,9 @@ def createPost(part2CJ, part3CJ, part4CJ, part5CJ):
         'ioff_application_year' : part5CJ,
         'ioff_zov' : '',
         'op':'Ověřit',
-        'form_build_id' : 'form-N0TjT6B18wsFb8-qmGSQ6MadxRfW3a_ANpI_mC759XQ',
+        'form_build_id' : 'form-mgZs5aBXbiZnBFuMWtT4XdFoWJHCh2UmTIY_j1lYykE',
         'form_id': 'ioff_application_status_form',
-        'honeypot_time': '1667419953|2LDoFhP3t4QEFs7r0BHuQ0I71Ynb57diBf2N1APpsvk',
+        'honeypot_time': '1674998278|JFIcFp5Kk4lQE8RjmJwRmHjfipGSqYoTWUS1OZh-xug',
         'surname': ''})
     #print(r.text)
 
@@ -64,24 +69,29 @@ def createPost(part2CJ, part3CJ, part4CJ, part5CJ):
     # r = requests.post('https://pythonworld.ru/tipy-dannyx-v-python/fajly-rabota-s-fajlami.html')
     #
     #print(r.text)
-    # request2file = open('statusVisa2.txt', 'w')
     # request2file.write(r.text)
     logging.info('request is writed to file')
     NumVisa = part1CJ + "-" + part2CJ + "/" + part4CJ + "-" + part5CJ
     print('NumVisa - ' + NumVisa)
     statusNum = r.text.find(NumVisa)
     print('statusNum - ' + str(statusNum))
-    statusPart1 = r.text[statusNum + 100: statusNum + 101]  # get first latter status
-    print('statusPart1 - ' + statusPart1)
-    if statusPart1 == "Z":
-        status = r.text[statusNum + 101: statusNum + 114]   # Zpracovává se
-        print('Zpracovává se')
-    elif statusPart1 == "V":
-        status = r.text[statusNum + 100: statusNum + 119]   # Vyřízeno – POVOLENO
-        print('Vyřízeno – POVOLENO')
+    statusZpracovává = r.text.find('Zpracovává se', statusNum, statusNum + 200)     #find word 'Zpracovává se' (if NO -1 / if YES - number start word)
+    statusVyřízeno = r.text.find('Vyřízeno – POVOLENO', statusNum, statusNum + 200)            #find word 'Vyřízeno' (if NO -1 / if YES - number start word)
+    print('statusZpracovává - ' + str(statusZpracovává))
+    print('statusVyřízeno - ' + str(statusVyřízeno))
+
+    #print('statusPart1 - ' + statusPart1)
+    if statusZpracovává != -1:
+        #status = r.text[statusZpracovává: statusZpracovává + 13]   # Zpracovává se
+        #print('Zpracovává se')
+        status = 'Zpracovává se'
+    elif statusVyřízeno != -1:
+        #status = r.text[statusNum + 100: statusNum + 119]   # Vyřízeno – POVOLENO
+        #print('Vyřízeno – POVOLENO')
+        status = 'Vyřízeno – POVOLENO'
     else:
         print('else')
-        print(r.text[statusNum + 100: statusNum + 119])
+        print(r.text[statusNum : statusNum + 300])
     #print( cisloJednaniGlob + ' - status = ', status)
     #statusNum = r.text.find('<span class="alert alert-warning"><strong>')
     statusViza = cisloJednaniGlob + ' - status = ' + status

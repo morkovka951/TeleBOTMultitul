@@ -5,7 +5,7 @@ import time
 
 import requests
 #
-import botFunction
+#import botFunction
 import botFunctionAiogram
 import checkMac
 import dbPostgres
@@ -31,8 +31,8 @@ if __name__ == '__main__':
     print_hi('PyCharm')
 
     #botFunction.bot()
-    #botFunctionAiogram.main()
-    checkMac.start()
+    botFunctionAiogram.main()
+    #checkMac.start()
 
     #dbPostgres.connection2PostgresSelect('insert into public.carfuel VALUES (\'text55\', \'text55\', \'comments55\');')
 

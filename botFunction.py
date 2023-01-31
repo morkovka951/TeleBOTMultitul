@@ -1,5 +1,5 @@
 import time
-
+import aiogram
 import telebot
 import random
 import checkVisa
@@ -28,12 +28,13 @@ def bot():
     def send_welcome(message):
         #useID = message
 
-        #checkVisa.main('OAM-70324-4/ZM-2022')
+        #checkVisa.main('OAM-70324-4/ZM-2022') #
         #print(checkVisa.statusViza)
         #bot.send_message(message.chat.id, checkVisa.statusViza)
         #time.sleep(3)
         #time.sleep(random.randint(5, 50))
-        checkVisa.main('OAM-42474-3/DP-2022')
+        #checkVisa.main('OAM-42474-3/DP-2022')
+        checkVisa.main('OAM-02172-2/TP-2023')
         print(checkVisa.statusViza)
         bot.send_message(message.chat.id, checkVisa.statusViza)
 
